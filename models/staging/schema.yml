@@ -15,7 +15,7 @@ sources:
 models:
     - name: stg_epl
       description: >
-        This dataset contains data for last 10 seasons of English Premier League.
+        This dataset contains data for 10 seasons of English Premier League.
         The dataset is sourced from http://www.football-data.co.uk/ website and contains
         various statistical data such as final and half time result, corners, yellow and red cards etc.
       columns:

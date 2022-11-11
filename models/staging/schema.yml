@@ -1,0 +1,122 @@
+version: 2
+
+sources:
+    - name: staging
+      database: zinc-proton-363104
+      schema: european_football_leagues
+
+      tables:
+          - name: english-premier-league_external_table
+          - name: french-ligue-1_external_table
+          - name: german-bundesliga_external_table
+          - name: italian-serie-a_external_table
+          - name: spanish-la-liga_external_table
+
+models:
+    - name: stg_epl
+      description: >
+        This dataset contains data for last 10 seasons of English Premier League.
+        The dataset is sourced from http://www.football-data.co.uk/ website and contains
+        various statistical data such as final and half time result, corners, yellow and red cards etc.
+      columns:
+        - name: league_id
+          tests:
+            - not_null
+        - name: match_id
+          tests:
+            - unique
+            - not_null
+        - name: league_name
+          description: >
+            E0 = English Premier League
+          tests:
+            - not_null
+        - name: season
+          tests:
+            - not_null
+        - name: home_team
+          tests:
+            - not_null
+        - name: away_team
+          tests:
+            - not_null
+        - name: full_time_result
+          description: >
+            A code indication who won the match
+            H = Home wins
+            A = Away wins
+            D = Draw 
+          tests:
+            - accepted_values:
+                values: ['H', 'A', 'D']
+                severity: warn
+            - not_null
+        - name: half_time_result
+          description: >
+            A code indication who won the match
+            H = Home wins
+            A = Away wins
+            D = Draw 
+          tests:
+            - accepted_values:
+                values: ['H', 'A', 'D']
+                severity: warn
+            - not_null
+        
+        - name: full_time_home_goals
+          tests:
+            - not_null
+        - name: full_time_away_goals
+          tests:
+            - not_null
+        - name: half_time_home_goals
+          tests:
+            - not_null
+        - name: half_time_away_goals
+          tests:
+            - not_null
+        - name: home_shots
+          tests:
+            - not_null
+        - name: away_shots
+          tests:
+            - not_null
+        - name: home_shots_on_target
+          tests:
+            - not_null
+        - name: away_shots_on_target
+          tests:
+            - not_null
+        - name: home_corners
+          tests:
+            - not_null
+        - name: away_corners
+          tests:
+            - not_null
+        - name: home_fouls
+          tests:
+            - not_null
+        - name: away_fouls
+          tests:
+            - not_null
+        - name: home_yellow_cards
+          tests:
+            - not_null
+        - name: away_yellow_cards
+          tests:
+            - not_null
+        - name: home_red_cards
+          tests:
+            - not_null
+        - name: away_red_cards
+          tests:
+            - not_null
+        
+        - name: old_formatted_date
+          tests:
+            - not_null
+        - name: new_formatted_date
+          tests:
+            - not_null
+            
+        

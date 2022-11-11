@@ -14,15 +14,15 @@ models:
       - name: league_id
         tests:
           - not_null
-          - relationships:
-                to: ref('dim_leagues')
-                field: league_id
+          # - relationships:
+          #       to: ref('dim_leagues')
+          #       field: league_id
       - name: match_id
           tests:
             - unique
             - not_null
-            - relationships:
-                to: ref('dim_matches')
-                field: match_id
+            # - relationships:
+            #     to: ref('dim_matches')
+            #     field: match_id
 
     

@@ -10,3 +10,14 @@ models:
       Contains match information from 10 seasons of English Premier League with detailed information on the team names, seasons, half-time and full-time results.
   - name: fact_results
     description: "{{ doc('fact_results') }}"
+    columns:
+      - name: league_id
+        tests:
+          - relationships:
+              to: ref('dim_leagues')
+              field: league_id
+      - name: match_id
+        tests:
+          - relationships:
+              to: ref('dim_matches')
+              field: match_id

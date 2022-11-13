@@ -1,15 +1,15 @@
 {{ config(materialized='view') }}
 
-with matches as (
+with results as (
     select 
         distinct match_id,
         league_id,
         season,
-        home_team,
-        away_team,
+        hometeam_id,
+        awayteam_id,
         full_time_result,
         half_time_result
     from {{ ref('stg_epl')}}
 )
 
-select * from matches
+select * from results

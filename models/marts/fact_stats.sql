@@ -2,7 +2,7 @@
 
 with stats as (
     select 
-        *.
+        *,
         case 
             when full_time_result = 'H' then 3
             when full_time_result = 'D' then 1

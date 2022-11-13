@@ -36,8 +36,7 @@ with source_epl as (
     AR as away_red_cards,
 
     -- date/times
-    `Date` as old_formatted_date,
-    coalesce(safe.parse_date('%Y-%m-%d', Date), safe.parse_date('%d/%m/%y', Date), safe.parse_date('%d/%m/%Y', Date)) as new_formatted_date
+    coalesce(safe.parse_date('%Y-%m-%d', Date), safe.parse_date('%d/%m/%y', Date), safe.parse_date('%d/%m/%Y', Date)) as date_formatted
 
   from {{ source('staging','english-premier-league_external_table') }}
   order by new_formatted_date

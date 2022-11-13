@@ -32,7 +32,7 @@ models:
         - name: awayteam_id
           tests:
             - not_null
-            
+
         - name: league_name
           description: >
             E0 = English Premier League
@@ -119,9 +119,6 @@ models:
           tests:
             - not_null
         
-        - name: old_formatted_date
-          tests:
-            - not_null
-        - name: new_formatted_date
+        - name: date_formatted
           tests:
             - not_null

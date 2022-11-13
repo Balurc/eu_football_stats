@@ -6,6 +6,8 @@ with source_epl as (
     -- ids
     {{ dbt_utils.surrogate_key(['Div']) }} league_id,
     {{ dbt_utils.surrogate_key(['season','HomeTeam','AwayTeam']) }} match_id,
+    {{ dbt_utils.surrogate_key(['HomeTeam']) }} hometeam_id,
+    {{ dbt_utils.surrogate_key(['AwayTeam']) }} awayteam_id,
 
     -- dimensions
     Div as league_name,
@@ -41,4 +43,4 @@ with source_epl as (
   order by new_formatted_date
 )
 
-select * from source_epl
+select * from source_epl;

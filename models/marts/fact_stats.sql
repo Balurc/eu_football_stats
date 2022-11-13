@@ -5,4 +5,4 @@ with results as (
     from {{ ref('stg_epl')}}
 )
 
-select * from results
+select * from stats

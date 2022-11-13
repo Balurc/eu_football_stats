@@ -43,4 +43,4 @@ with source_epl as (
   order by new_formatted_date
 )
 
-select * from source_epl;
+select * from source_epl

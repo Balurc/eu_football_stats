@@ -44,6 +44,3 @@ with source_epl as (
 )
 
 select * from source_epl;
-
-
-

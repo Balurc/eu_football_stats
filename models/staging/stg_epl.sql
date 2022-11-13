@@ -39,7 +39,7 @@ with source_epl as (
     coalesce(safe.parse_date('%Y-%m-%d', Date), safe.parse_date('%d/%m/%y', Date), safe.parse_date('%d/%m/%Y', Date)) as date_formatted
 
   from {{ source('staging','english-premier-league_external_table') }}
-  order by new_formatted_date
+  order by date_formatted
 )
 
 select * from source_epl

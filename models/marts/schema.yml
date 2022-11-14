@@ -243,7 +243,7 @@ models:
           dimension:
             label: 'Total Goals'
           metrics:
-            total_goals:
+            goals:
               type: sum
               labels: "Goals"
       - name: total_shots
@@ -252,7 +252,7 @@ models:
           dimension:
             label: 'Total Shots'
           metrics:
-            total_shots:
+            shots:
               type: sum
               labels: "Shots"
       - name: total_shots_on_target
@@ -261,7 +261,7 @@ models:
           dimension:
             label: 'Total Shots On Target'
           metrics:
-            total_shots_on_target:
+            shots_on_target:
               type: sum
               labels: "Shots On Target"
       - name: total_fouls_commited
@@ -270,7 +270,7 @@ models:
           dimension:
             label: 'Total Fouls'
           metrics:
-            total_fouls_commited:
+            fouls_commited:
               type: sum
               labels: "Fouls"
       - name: total_yellow_cards
@@ -279,7 +279,7 @@ models:
           dimension:
             label: 'Total Yellow Cards'
           metrics:
-            total_yellow_cards:
+            yellow_cards:
               type: sum
               labels: "Yellow Cards"
       - name: total_red_cards
@@ -288,6 +288,6 @@ models:
           dimension:
             label: 'Total Red Cards'
           metrics:
-            total_red_cards:
+            red_cards:
               type: sum
               labels: "Red Cards"

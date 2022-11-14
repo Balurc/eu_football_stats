@@ -218,7 +218,7 @@ models:
               type: sum
               label: "Points"
 
-  - name: league_stats
+  - name: fact_league_stats
     description: >
       Table that contains every team in-game statistics for every match they played, home and away.
     columns:

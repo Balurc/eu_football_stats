@@ -20,11 +20,11 @@ with stats as (
             when half_time_result = 'D' then 1
             else 0 end awayteam_halftime_points
 
-    from {{ ref('stg_epl')}}
+    from {{ ref('stg_football')}}
 ),
 
 final as (
-    select * except (league_name, season, home_team, away_team, full_time_result, half_time_result)
+    select * except (season, hometeam_name, awayteam_name, full_time_result, half_time_result)
     from stats
 )
 

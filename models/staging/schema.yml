@@ -13,13 +13,19 @@ sources:
           - name: spanish-la-liga_external_table
 
 models:
-    - name: stg_epl
+    - name: stg_football
       description: >
-        This dataset contains data for 10 seasons of English Premier League.
+        This dataset contains data for 10 seasons of European top 5 leagues.
         The dataset is sourced from http://www.football-data.co.uk/ website and contains
         various statistical data such as final and half time result, corners, yellow and red cards etc.
       columns:
         - name: league_id
+          description: >
+            E0 = English Premier League
+            SP1 = Spanish La Liga
+            I1 = Italian Serie-A
+            D1 = German Bundesliga
+            F1 = French Ligue 1
           tests:
             - not_null
         - name: match_id
@@ -33,18 +39,13 @@ models:
           tests:
             - not_null
 
-        - name: league_name
-          description: >
-            E0 = English Premier League
-          tests:
-            - not_null
         - name: season
           tests:
             - not_null
-        - name: home_team
+        - name: hometeam_name
           tests:
             - not_null
-        - name: away_team
+        - name: awayteam_name
           tests:
             - not_null
         - name: full_time_result

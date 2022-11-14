@@ -226,6 +226,7 @@ models:
         description: "Period or season of the match."
         meta:
           dimension:
+            type: string
             label: 'Season'
       - name: league_name
         description: "League name."

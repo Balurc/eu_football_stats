@@ -216,4 +216,4 @@ models:
           metrics:
             total_points:
               type: sum
-              label: Points"
+              label: "Points"

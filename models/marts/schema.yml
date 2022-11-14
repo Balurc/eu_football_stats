@@ -148,7 +148,7 @@ models:
           metrics:
             total_matches:
               type: count
-              label: "Total Matches"
+              label: "MP"
       - name: status
         description: "Home or away status."
         meta:
@@ -162,7 +162,7 @@ models:
           metrics:
             total_wins:
               type: sum
-              label: "Total Wins"
+              label: "W"
       - name: draws
         description: "Number of draws."
         meta:
@@ -171,7 +171,7 @@ models:
           metrics:
             total_draws:
               type: sum
-              label: "Total Draws"
+              label: "D"
       - name: loses
         description: "Number of loses."
         meta:
@@ -180,34 +180,34 @@ models:
           metrics:
             total_loses:
               type: sum
-              label: "Total Loses"
+              label: "L"
       - name: goals_for
         description: "Number of goals the team has scored."
         meta:
           dimension:
-            label: 'GF'
+            label: 'Goal Scored'
           metrics:
             total_gf:
               type: sum
-              label: "Total GF"
+              label: "GF"
       - name: goals_against
         description: "Number of goals the team has conceded."
         meta:
           dimension:
-            label: 'GA'
+            label: 'Goals Conceded'
           metrics:
             total_ga:
               type: sum
-              label: "Total GA"
+              label: "GA"
       - name: goals_difference
         description: "Number of goals difference between goals scored and conceded."
         meta:
           dimension:
-            label: 'GD'
+            label: 'Goals Difference'
           metrics:
             total_gd:
               type: sum
-              label: "Total GD"
+              label: "GD"
       - name: points
         description: "Points received."
         meta:
@@ -216,4 +216,4 @@ models:
           metrics:
             total_points:
               type: sum
-              label: "Total Points"
+              label: Points"

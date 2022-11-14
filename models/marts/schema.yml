@@ -128,7 +128,7 @@ models:
     
   - name: league_standings
     description: >
-      Table that contains every team stats for every match they played, home and away.
+      Table that contains every team wins, draws and loses for every match they played in, home and away.
     columns:
       - name: league_name
         description: "League name."
@@ -217,3 +217,77 @@ models:
             total_points:
               type: sum
               label: "Points"
+
+  - name: league_stats
+    description: >
+      Table that contains every team in-game statistics for every match they played, home and away.
+    columns:
+      - name: season
+        description: "Period or season of the match."
+        meta:
+          dimension:
+            label: 'Season'
+      - name: league_name
+        description: "League name."
+        meta:
+          dimension:
+            label: 'League Name'
+      - name: match_id
+        description: "Unique identifier for a match."
+        meta:
+          dimension:
+            label: 'Match ID'
+      - name: total_goals
+        description: "Total goals scored."
+        meta:
+          dimension:
+            label: 'Total Goals'
+          metrics:
+            total_goals:
+              type: sum
+              labels: "Goals"
+      - name: total_shots
+        description: "Total number of shots made."
+        meta:
+          dimension:
+            label: 'Total Shots'
+          metrics:
+            total_shots:
+              type: sum
+              labels: "Shots"
+      - name: total_shots_on_target
+        description: "Total number of shots on target made."
+        meta:
+          dimension:
+            label: 'Total Shots On Target'
+          metrics:
+            total_shots_on_target:
+              type: sum
+              labels: "Shots On Target"
+      - name: total_fouls_commited
+        description: "Total number of fouls commited."
+        meta:
+          dimension:
+            label: 'Total Fouls'
+          metrics:
+            total_fouls_commited:
+              type: sum
+              labels: "Fouls"
+      - name: total_yellow_cards
+        description: "Total number of yellow cards received."
+        meta:
+          dimension:
+            label: 'Total Yellow Cards'
+          metrics:
+            total_yellow_cards:
+              type: sum
+              labels: "Yellow Cards"
+      - name: total_red_cards
+        description: "Total number of red cards received."
+        meta:
+          dimension:
+            label: 'Total Red Cards'
+          metrics:
+            total_red_cards:
+              type: sum
+              labels: "Red Cards"

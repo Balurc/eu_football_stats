@@ -40,7 +40,7 @@ models:
             type: string
             label: "League ID"
       - name: season
-        description: "Period or season of the league"
+        description: "Period or season of the league."
         meta:
           dimension:
             type: string
@@ -129,3 +129,91 @@ models:
   - name: league_standings
     description: >
       Table that contains every team stats for every match they played, home and away.
+    columns:
+      - name: league_name
+        description: "League name."
+        meta:
+          dimension:
+            label: 'League Name'
+      - name: season
+        description: "Period or season of the league."
+        meta:
+          dimension:
+            label: 'Season'
+      - name: team_name
+        description: "Team name."
+        meta:
+          dimension:
+            label: 'Team Name'
+          metrics:
+            total_matches:
+              type: count
+              label: "Total Matches"
+      - name: status
+        description: "Home or away status."
+        meta:
+          dimension:
+            label: 'Status'
+      - name: wins
+        description: "Number of wins."
+        meta:
+          dimension:
+            label: 'Wins'
+          metrics:
+            total_wins:
+              type: sum
+              label: "Total Wins"
+      - name: draws
+        description: "Number of draws."
+        meta:
+          dimension:
+            label: 'Draws'
+          metrics:
+            total_draws:
+              type: sum
+              label: "Total Draws"
+      - name: loses
+        description: "Number of loses."
+        meta:
+          dimension:
+            label: 'Loses'
+          metrics:
+            total_loses:
+              type: sum
+              label: "Total Loses"
+      - name: goals_for
+        description: "Number of goals the team has scored."
+        meta:
+          dimension:
+            label: 'GF'
+          metrics:
+            total_gf:
+              type: sum
+              label: "Total GF"
+      - name: goals_against
+        description: "Number of goals the team has conceded."
+        meta:
+          dimension:
+            label: 'GA'
+          metrics:
+            total_ga:
+              type: sum
+              label: "Total GA"
+      - name: goals_difference
+        description: "Number of goals difference between goals scored and conceded."
+        meta:
+          dimension:
+            label: 'GD'
+          metrics:
+            total_gd:
+              type: sum
+              label: "Total GD"
+      - name: points
+        description: "Points received."
+        meta:
+          dimension:
+            label: 'Points'
+          metrics:
+            total_points:
+              type: sum
+              label: "Total Points"

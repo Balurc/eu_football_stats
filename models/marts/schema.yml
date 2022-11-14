@@ -6,10 +6,19 @@ models:
       List of unique league identified by leaugue_id.
     columns:
       - name: league_id
+        meta:
+          dimension:
+            type: string
+            label: "League ID"
         tests:
           - relationships:
               to: ref('dim_teams', 'dim_results')
               field: league_id
+      - name: league_name
+        meta:
+          dimension:
+            type: string
+            label: "League Name"
 
   - name: dim_results
     description: >

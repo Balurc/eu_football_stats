@@ -9,7 +9,7 @@ with results as (
         awayteam_id,
         full_time_result,
         half_time_result
-    from {{ ref('stg_epl')}}
+    from {{ ref('stg_football')}}
 )
 
 select * from results

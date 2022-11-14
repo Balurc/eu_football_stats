@@ -55,3 +55,7 @@ models:
           - relationships:
               to: ref('dim_teams')
               field: team_id
+    
+    - name: league_standings
+      description: >
+        Table that contains every team stats for every match they played, home and away.

@@ -3,9 +3,10 @@ version: 2
 models:
   - name: dim_leagues
     description: >
-      List of unique league identified by leaugue_id.
+      List of European football leagues identified each identified by a league id.
     columns:
       - name: league_id
+        description: "Unique identifier of the league."
         meta:
           dimension:
             type: string
@@ -15,6 +16,7 @@ models:
               to: ref('dim_teams', 'dim_results')
               field: league_id
       - name: league_name
+        description: "League name."
         meta:
           dimension:
             type: string
@@ -25,21 +27,80 @@ models:
       List of matches identified by match_id
       Contains match information from 10 seasons of English Premier League with detailed information on the team names, seasons, half-time and full-time results.
     columns:
+      - name: match_id
+        description: "Unique identifier for ever match."
+        meta:
+          dimension:
+            type: string
+            label: "Match ID"
+      - name: league_id
+        description: "Unique identifier of the league."
+        meta:
+          dimension:
+            type: string
+            label: "League ID"
+      - name: season
+        description: "Period or season of the league"
+        meta:
+          dimension:
+            type: string
+            label: "Season"
       - name: hometeam_id
+        description: "Unique identifier for home team."
+        meta:
+          dimension:
+            type: string
+            label: "Hometeam ID"
         tests:
           - relationships:
               to: ref('dim_teams')
               field: team_id
-    columns:
       - name: awayteam_id
+        description: "Unique identifier for away team."
+        meta:
+          dimension:
+            type: string
+            label: "Awayteam ID"
         tests:
           - relationships:
               to: ref('dim_teams')
               field: team_id
+      - name: full_time_result
+        description: "Full time result - H; Home Wins, D; Draw & A; Away Wins"
+        meta:
+          dimension:
+            type: string
+            label: "Fulltime Result"
+      - name: half_time_result
+        description: "Half time result - H; Home Wins, D; Draw & A; Away Wins"
+        meta:
+          dimension:
+            type: string
+            label: "Halftime Result"
 
   - name: dim_teams
     description: >
       List of teams identified team_id and team_name.
+    columns:
+      - name: team_id
+        description: "Unique identifier for every team in the league."
+        meta:
+          dimension:
+            type: string
+            label: "Team ID"
+      - name: team_name
+        description: "Team name."
+        meta:
+          dimension:
+            type: string
+            label: "Team Name"
+      - name: league_id
+        description: "Unique identifier of the league."
+        meta:
+          dimension:
+            type: string
+            label: "League ID"
+      
 
   - name: fact_stats
     description: "{{ doc('fact_stats') }}"

@@ -6,21 +6,26 @@ models:
       List of European football leagues identified each identified by a league id.
     columns:
       - name: league_id
-        description: "Unique identifier of the league."
+        description: "Unique identifier of the league, the primary key."
         meta:
           dimension:
             type: string
             label: "League ID"
         tests:
           - relationships:
-              to: ref('dim_teams', 'dim_results')
+              to: ref('dim_teams')
               field: league_id
+          - not_null
+          - unique
       - name: league_name
         description: "League name."
         meta:
           dimension:
             type: string
             label: "League Name"
+        tests:
+          - not_null
+          - unique
 
   - name: dim_results
     description: >
@@ -28,23 +33,33 @@ models:
       Contains match information from 10 seasons of English Premier League with detailed information on the team names, seasons, half-time and full-time results.
     columns:
       - name: match_id
-        description: "Unique identifier for ever match."
+        description: "Unique identifier for every match, the primary key."
         meta:
           dimension:
             type: string
             label: "Match ID"
+        tests:
+          - not_null
+          - unique
       - name: league_id
-        description: "Unique identifier of the league."
+        description: "Unique identifier of the league, the foreign key to tracks league."
         meta:
           dimension:
             type: string
             label: "League ID"
+        tests:
+          - relationships:
+              to: ref('dim_leagues')
+              field: league_id
+          - not_null
       - name: season
         description: "Period or season of the league."
         meta:
           dimension:
             type: string
             label: "Season"
+        tests:
+          - not_null
       - name: hometeam_id
         description: "Unique identifier for home team."
         meta:
@@ -55,6 +70,7 @@ models:
           - relationships:
               to: ref('dim_teams')
               field: team_id
+          - not_null
       - name: awayteam_id
         description: "Unique identifier for away team."
         meta:
@@ -65,41 +81,59 @@ models:
           - relationships:
               to: ref('dim_teams')
               field: team_id
+          - not_null
       - name: full_time_result
         description: "Full time result - H; Home Wins, D; Draw & A; Away Wins"
         meta:
           dimension:
             type: string
             label: "Fulltime Result"
+        tests:
+          - accepted_values:
+              values: ['H', 'A', 'D']
+              severity: warn
+          - not_null
       - name: half_time_result
         description: "Half time result - H; Home Wins, D; Draw & A; Away Wins"
         meta:
           dimension:
             type: string
             label: "Halftime Result"
+        tests:
+          - accepted_values:
+              values: ['H', 'A', 'D']
+              severity: warn
+          - not_null
 
   - name: dim_teams
     description: >
       List of teams identified team_id and team_name.
     columns:
       - name: team_id
-        description: "Unique identifier for every team in the league."
+        description: "Unique identifier for every team in the league, the primary key."
         meta:
           dimension:
             type: string
             label: "Team ID"
+        tests:
+          - not_null
+          - unique
       - name: team_name
         description: "Team name."
         meta:
           dimension:
             type: string
             label: "Team Name"
+        tests:
+          - not_null
       - name: league_id
-        description: "Unique identifier of the league."
+        description: "Unique identifier of the league, the foreign key to tracks league."
         meta:
           dimension:
             type: string
             label: "League ID"
+        tests:
+          - not_null
       
 
   - name: fact_stats
@@ -110,21 +144,25 @@ models:
           - relationships:
               to: ref('dim_leagues')
               field: league_id
+          - not_null
       - name: match_id
         tests:
           - relationships:
               to: ref('dim_results')
               field: match_id
+          - not_null
       - name: hometeam_id
         tests:
           - relationships:
               to: ref('dim_teams')
               field: team_id
+          - not_null
       - name: awayteam_id
         tests:
           - relationships:
               to: ref('dim_teams')
               field: team_id
+          - not_null
     
   - name: fact_league_standings
     description: >
@@ -135,11 +173,15 @@ models:
         meta:
           dimension:
             label: 'League Name'
+        tests:
+          - not_null
       - name: season
         description: "Period or season of the league."
         meta:
           dimension:
             label: 'Season'
+        tests:
+          - not_null
       - name: team_name
         description: "Team name."
         meta:
@@ -149,11 +191,15 @@ models:
             total_matches:
               type: count
               label: "MP"
+        tests:
+          - not_null
       - name: status
         description: "Home or away status."
         meta:
           dimension:
             label: 'Status'
+        tests:
+          - not_null
       - name: wins
         description: "Number of wins."
         meta:
@@ -163,6 +209,8 @@ models:
             total_wins:
               type: sum
               label: "W"
+        tests:
+          - not_null
       - name: draws
         description: "Number of draws."
         meta:
@@ -172,6 +220,8 @@ models:
             total_draws:
               type: sum
               label: "D"
+        tests:
+          - not_null
       - name: loses
         description: "Number of loses."
         meta:
@@ -181,6 +231,8 @@ models:
             total_loses:
               type: sum
               label: "L"
+        tests:
+          - not_null
       - name: goals_for
         description: "Number of goals the team has scored."
         meta:
@@ -190,6 +242,8 @@ models:
             total_gf:
               type: sum
               label: "GF"
+        tests:
+          - not_null
       - name: goals_against
         description: "Number of goals the team has conceded."
         meta:
@@ -199,6 +253,8 @@ models:
             total_ga:
               type: sum
               label: "GA"
+        tests:
+          - not_null
       - name: goals_difference
         description: "Number of goals difference between goals scored and conceded."
         meta:
@@ -208,6 +264,8 @@ models:
             total_gd:
               type: sum
               label: "GD"
+        tests:
+          - not_null
       - name: total_goals_scored
         description: "Number of goals scored."
         meta:
@@ -217,6 +275,8 @@ models:
             total_gs:
               type: sum
               label: "GS"
+        tests:
+          - not_null
       - name: points
         description: "Points received."
         meta:
@@ -226,6 +286,8 @@ models:
             total_points:
               type: sum
               label: "Points"
+        tests:
+          - not_null
 
   - name: fact_league_stats
     description: >
@@ -236,22 +298,30 @@ models:
         meta:
           dimension:
             label: 'Season'
+        tests:
+          - not_null
       - name: match_date
         description: "The date when the match is played."
         meta:
           dimension:
             type: date
             label: 'Match Date'
+        tests:
+          - not_null
       - name: league_name
         description: "League name."
         meta:
           dimension:
             label: 'League Name'
+        tests:
+          - not_null
       - name: match_id
         description: "Unique identifier for a match."
         meta:
           dimension:
             label: 'Match ID'
+        tests:
+          - not_null
       - name: total_goals
         description: "Total goals scored."
         meta:
@@ -262,6 +332,8 @@ models:
               type: average
               labels: "Average Goals"
               round: 2
+        tests:
+          - not_null
       - name: total_shots
         description: "Total number of shots made."
         meta:
@@ -272,6 +344,8 @@ models:
               type: average
               labels: "Average Shots"
               round: 2
+        tests:
+          - not_null
       - name: total_shots_on_target
         description: "Total number of shots on target made."
         meta:
@@ -282,6 +356,8 @@ models:
               type: average
               labels: "Average Shots On Target"
               round: 2
+        tests:
+          - not_null
       - name: total_fouls_commited
         description: "Total number of fouls commited."
         meta:
@@ -291,6 +367,8 @@ models:
             avg_fouls_commited:
               type: average
               labels: "Average Fouls"
+        tests:
+          - not_null
       - name: total_yellow_cards
         description: "Total number of yellow cards received."
         meta:
@@ -300,6 +378,8 @@ models:
             avg_yellow_cards:
               type: average
               labels: "Average Yellow Cards"
+        tests:
+          - not_null
       - name: total_red_cards
         description: "Total number of red cards received."
         meta:
@@ -309,3 +389,5 @@ models:
             avg_red_cards:
               type: average
               labels: "Average Red Cards"
+        tests:
+          - not_null

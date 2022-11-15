@@ -249,55 +249,54 @@ models:
           dimension:
             label: "Total Goals"
           metrics:
-            sum_goals:
-              type: sum
-              labels: "Sum Goals"
-          metrics:
             avg_goals:
               type: average
               labels: "Average Goals"
+              round: 2
       - name: total_shots
         description: "Total number of shots made."
         meta:
           dimension:
             label: 'Total Shots'
           metrics:
-            shots:
-              type: sum
-              labels: "Shots"
+            avg_shots:
+              type: average
+              labels: "Average Shots"
+              round: 2
       - name: total_shots_on_target
         description: "Total number of shots on target made."
         meta:
           dimension:
             label: 'Total Shots On Target'
           metrics:
-            shots_on_target:
-              type: sum
-              labels: "Shots On Target"
+            avg_shots_on_target:
+              type: average
+              labels: "Average Shots On Target"
+              round: 2
       - name: total_fouls_commited
         description: "Total number of fouls commited."
         meta:
           dimension:
             label: 'Total Fouls'
           metrics:
-            fouls_commited:
-              type: sum
-              labels: "Fouls"
+            avg_fouls_commited:
+              type: average
+              labels: "Average Fouls"
       - name: total_yellow_cards
         description: "Total number of yellow cards received."
         meta:
           dimension:
             label: 'Total Yellow Cards'
           metrics:
-            yellow_cards:
-              type: sum
-              labels: "Yellow Cards"
+            avg_yellow_cards:
+              type: average
+              labels: "Average Yellow Cards"
       - name: total_red_cards
         description: "Total number of red cards received."
         meta:
           dimension:
             label: 'Total Red Cards'
           metrics:
-            red_cards:
-              type: sum
-              labels: "Red Cards"
+            avg_red_cards:
+              type: average
+              labels: "Average Red Cards"

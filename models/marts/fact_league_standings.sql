@@ -12,6 +12,7 @@ with home_stats as (
     fs.full_time_home_goals as goals_for,
     fs.full_time_away_goals as goals_against,
     (fs.full_time_home_goals - fs.full_time_away_goals ) as goals_difference,
+    (fs.full_time_home_goals + fs.full_time_away_goals ) as total_goals_scored,
     fs.hometeam_fulltime_points as points
   from {{ ref('fact_stats') }} fs
   join {{ ref('dim_results') }} dr
@@ -33,6 +34,7 @@ away_stats as (
     fs.full_time_away_goals as goals_for,
     fs.full_time_home_goals as goals_against,
     (fs.full_time_away_goals - fs.full_time_home_goals ) as goals_difference,
+    (fs.full_time_away_goals + fs.full_time_home_goals ) as total_goals_scored,
     fs.awayteam_fulltime_points as points
   from {{ ref('fact_stats') }} fs
   join {{ ref('dim_results') }} dr

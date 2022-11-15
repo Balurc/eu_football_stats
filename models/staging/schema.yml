@@ -12,6 +12,9 @@ sources:
           - name: italian-serie-a_external_table
           - name: spanish-la-liga_external_table
 
+- dbt_expectations.expect_column_values_to_be_of_type:
+      column_type: date
+
 models:
     - name: stg_football
       description: >
@@ -28,26 +31,40 @@ models:
             F1 = French Ligue 1
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                league_id: string
         - name: match_id
           tests:
             - unique
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                match_id: string
         - name: hometeam_id
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                hometeam_id: string
         - name: awayteam_id
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                awayteam_id: string
 
         - name: season
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                season: string
         - name: hometeam_name
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                hometeam_name: string
         - name: awayteam_name
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                awayteam_name: string
         - name: full_time_result
           description: >
             A code indication who won the match
@@ -59,6 +76,8 @@ models:
                 values: ['H', 'A', 'D']
                 severity: warn
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                full_time_result: string
         - name: half_time_result
           description: >
             A code indication who won the match
@@ -70,56 +89,124 @@ models:
                 values: ['H', 'A', 'D']
                 severity: warn
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                half_time_result: string
         
         - name: full_time_home_goals
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "full_time_home_goals >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                full_time_home_goals: integer
         - name: full_time_away_goals
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "full_time_away_goals >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                full_time_away_goals: integer
         - name: half_time_home_goals
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "half_time_home_goals >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                half_time_home_goals: integer
         - name: half_time_away_goals
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "half_time_away_goals >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                half_time_away_goals: integer
         - name: home_shots
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "home_shots >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                home_shots: integer
         - name: away_shots
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "away_shots >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                away_shots: integer
         - name: home_shots_on_target
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "home_shots_on_target >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                home_shots_on_target: integer
         - name: away_shots_on_target
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "away_shots_on_target >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                away_shots_on_target: integer
         - name: home_corners
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "home_corners >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                home_corners: integer
         - name: away_corners
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "away_corners >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                away_corners: integer
         - name: home_fouls
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "home_fouls >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                home_fouls: integer
         - name: away_fouls
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "away_fouls >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                away_fouls: integer
         - name: home_yellow_cards
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "home_yellow_cards >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                home_yellow_cards: integer
         - name: away_yellow_cards
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "away_yellow_cards >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                away_yellow_cards: integer
         - name: home_red_cards
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "home_red_cards >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                home_red_cards: integer
         - name: away_red_cards
           tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: "away_red_cards >= 0"
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                away_red_cards: integer
         
         - name: date_formatted
           tests:
             - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                date_formatted: date

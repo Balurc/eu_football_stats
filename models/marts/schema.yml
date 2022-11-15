@@ -126,7 +126,7 @@ models:
               to: ref('dim_teams')
               field: team_id
     
-  - name: league_standings
+  - name: fact_league_standings
     description: >
       Table that contains every team wins, draws and loses for every match they played in, home and away.
     columns:
@@ -222,16 +222,11 @@ models:
     description: >
       Table that contains every team in-game statistics for every match they played, home and away.
     columns:
-      - name: season1
+      - name: season
         description: "Period or season of the match."
         meta:
           dimension:
-            label: 'Season1'
-      - name: season2
-        description: "Period or season of the match."
-        meta:
-          dimension:
-            label: 'Season2'
+            label: 'Season'
       - name: match_date
         description: "The date when the match is played."
         meta:

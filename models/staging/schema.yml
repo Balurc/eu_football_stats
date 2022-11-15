@@ -12,9 +12,6 @@ sources:
           - name: italian-serie-a_external_table
           - name: spanish-la-liga_external_table
 
-- dbt_expectations.expect_column_values_to_be_of_type:
-      column_type: date
-
 models:
     - name: stg_football
       description: >

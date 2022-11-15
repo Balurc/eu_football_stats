@@ -226,8 +226,13 @@ models:
         description: "Period or season of the match."
         meta:
           dimension:
-            type: date
             label: 'Season'
+      - name: match_date
+        description: "The date when the match is played."
+        meta:
+          dimension:
+            type: date
+            label: 'Match Date'
       - name: league_name
         description: "League name."
         meta:

@@ -3,6 +3,7 @@
 with stats as (
     select
     concat(substr(season, (-4), 2),'/', substr(season, (-2), 2)) as season,
+    t2.date_formatted as match_date,
     t3.league_name,
     t1.match_id,
     (t2.full_time_home_goals + t2.full_time_away_goals) as total_goals,

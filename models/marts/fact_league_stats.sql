@@ -2,7 +2,8 @@
 
 with stats as (
     select
-    concat(substr(season, (-4), 2),'/', substr(season, (-2), 2)) as season,
+    concat(substr(t1.season, (-4), 2),'/', substr(t1.season, (-2), 2)) as season1,
+    upper(t1.season) as season2,
     t2.date_formatted as match_date,
     t3.league_name,
     t1.match_id,

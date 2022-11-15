@@ -222,11 +222,16 @@ models:
     description: >
       Table that contains every team in-game statistics for every match they played, home and away.
     columns:
-      - name: season
+      - name: season1
         description: "Period or season of the match."
         meta:
           dimension:
-            label: 'Season'
+            label: 'Season1'
+      - name: season2
+        description: "Period or season of the match."
+        meta:
+          dimension:
+            label: 'Season2'
       - name: match_date
         description: "The date when the match is played."
         meta:

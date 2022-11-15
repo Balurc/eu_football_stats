@@ -247,11 +247,15 @@ models:
         description: "Total goals scored."
         meta:
           dimension:
-            label: 'Total Goals'
+            label: "Total Goals"
           metrics:
-            goals:
+            sum_goals:
               type: sum
-              labels: "Goals"
+              labels: "Sum Goals"
+          metrics:
+            avg_goals:
+              type: average
+              labels: "Average Goals"
       - name: total_shots
         description: "Total number of shots made."
         meta:

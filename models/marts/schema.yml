@@ -208,6 +208,15 @@ models:
             total_gd:
               type: sum
               label: "GD"
+      - name: total_goals_scored
+        description: "Number of goals scored."
+        meta:
+          dimension:
+            label: 'Goals Scored'
+          metrics:
+            total_gs:
+              type: sum
+              label: "GS"
       - name: points
         description: "Points received."
         meta:
